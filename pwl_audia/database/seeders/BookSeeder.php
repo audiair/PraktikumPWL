@@ -22,6 +22,7 @@ class BookSeeder extends Seeder
                    'publisher' => 'gramedia',
                    'city' => 'cianjur',
                    'cover' => 'shshsh',
+                   'quantity' => '5',
                    'bookshelf_id' => '1',
                    'category_id' => '1'
 
@@ -33,6 +34,7 @@ class BookSeeder extends Seeder
                    'publisher' => 'gramedia',
                    'city' => 'cianjur',
                    'cover' => 'shshsh',
+                   'quantity' => '5',
                    'bookshelf_id' => '2',
                    'category_id' => '2'
                 ]

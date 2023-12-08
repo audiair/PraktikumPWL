@@ -11,10 +11,8 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('bookshelves', function (Blueprint $table) {
-            $table->id();
-            $table->string('code');
-            $table->string('name');
+        Schema::table('books', function (Blueprint $table) {
+            $table->integer('quantity')->after('cover');
         });
     }
 
@@ -23,6 +21,8 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('bookshelfs');
+        Schema::table('books', function (Blueprint $table) {
+            //
+        });
     }
 };

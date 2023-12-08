@@ -23,7 +23,7 @@ return new class extends Migration
 
             $table->foreignId('bookshelf_id')
             ->references('id')
-            ->on('bookshelfs')
+            ->on('bookshelves')
             ->onUpdate('cascade')
             ->onDelete('cascade');
 
