@@ -18,20 +18,8 @@ return new class extends Migration
             $table->year('year');
             $table->string('publisher');
             $table->string('city');
-            $table->string('cover');
+            $table->string('cover')->nullable;
             $table->timestamps();
-
-            $table->foreignId('bookshelf_id')
-            ->references('id')
-            ->on('bookshelves')
-            ->onUpdate('cascade')
-            ->onDelete('cascade');
-
-            $table->foreignId('category_id')
-            ->references('id')
-            ->on('categories')
-            ->onUpdate('cascade')
-            ->onDelete('cascade');
         });
     }
 
