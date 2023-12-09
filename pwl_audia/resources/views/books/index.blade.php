@@ -26,6 +26,7 @@
                                 <th>Cover</th>
                                 <th>Kuantitas</th>
                                 <th>Kode Rak</th>
+                                <th>AKSI</th>
                             </tr>
                         </x-slot>
                         @php $num=1; @endphp
@@ -42,6 +43,11 @@
                             </td>
                             <td>{{ $book->quantity }}</td>
                             <td>{{ $book->bookshelf->code }}-{{ $book->bookshelf->name }}</td>
+                            <td>
+                                <x-primary-button tag="a" href="{{route('book.edit', $book->id)}}">
+                                    EDIT
+                                </x-primary-button>
+                            </td>
                         </tr>
                         @endforeach
                    </x-table>

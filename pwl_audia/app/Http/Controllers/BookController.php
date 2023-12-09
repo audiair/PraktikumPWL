@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 use App\Models\Book;
 use App\Models\Bookshelf;
+
 
 class BookController extends Controller
 {
@@ -60,5 +62,40 @@ class BookController extends Controller
         $data['bookshelves'] = Bookshelf::pluck('name', 'id');
         
         return view('books.edit', $data);
+    }
+
+    public function update(Request $request, string $id){
+        $book = Book::find($id);
+
+        $validated = $request->validate([
+            'title' => 'required|max:255',
+            'author' => 'required|max:150',
+            'year' => 'required|digits:4|integer|min:1900|max:'.(date('Y')),
+            'publisher' => 'required|max:100',
+            'city' => 'required|max:75',
+            'quantity' => 'required|numeric',
+            'bookshelf_id' => 'required',
+            'cover' => 'nullable|image',
+        ]);
+
+        if ($request->hasFile('cover')) {
+            if($book->cover != null){
+                Storage::delete('public/cover_buku/' .$request->old_cover);
+            }
+            $path = $request->file('cover')->storeAs(
+                'public/cover_buku', 
+                'cover_buku_'.time() . '.' . $request->file('cover')->extension()
+            );
+            $validated['cover'] = basename($path);
+        }
+
+        Book::where('id', $id)->update($validated);
+
+        $notification = array(
+            'message' => 'Data buku berhasil diperbaharui',
+            'alert-type' => 'success'
+        );
+
+        return redirect()->route('books')->with($notification);
     }
 }
