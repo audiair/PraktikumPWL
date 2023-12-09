@@ -98,4 +98,20 @@ class BookController extends Controller
 
         return redirect()->route('books')->with($notification);
     }
+
+    public function destroy(string $id){
+        $book = Book::findOrFail($id);
+
+        Storage::delete('public/cover_buku/' .$book->cover);
+
+        $book->delete();
+
+        $notification = array(
+            'message' => 'Data buku berhasil dihapus',
+            'alert-type' => 'success'
+        );
+
+        return redirect()->route('books')->with($notification);
+
+    }
 }
