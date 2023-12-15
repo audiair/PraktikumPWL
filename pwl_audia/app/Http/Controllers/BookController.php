@@ -127,4 +127,5 @@ class BookController extends Controller
     public function export(){
         return Excel::download(new BooksExport, 'book.xlsx');
     }
+
 }
