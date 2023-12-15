@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use App\Models\Book;
 use App\Models\Bookshelf;
+use PDF;
 
 
 class BookController extends Controller
@@ -112,6 +113,12 @@ class BookController extends Controller
         );
 
         return redirect()->route('books')->with($notification);
+    }
 
+    public function print_books(){
+        $book = Book::all();
+
+        $pdf = PDF::loadview('books.print', ['books' => $book]);
+        return $pdf->download('data_buku.pdf');
     }
 }

@@ -13,35 +13,19 @@ class BookSeeder extends Seeder
      */
     public function run(): void
     {
-
-        // ga perlu pakai category
-
-        // DB::table('books')->insert(
-        //     [
-        //         [
-        //            'title' => 'Bulan',
-        //            'author' => 'lala',
-        //            'year'=> '2020',
-        //            'publisher' => 'gramedia',
-        //            'city' => 'cianjur',
-        //            'cover' => 'shshsh',
-        //            'quantity' => '5',
-        //            'bookshelf_id' => '1',
-        //            'category_id' => '1'
-
-        //         ],
-        //         [
-        //            'title' => 'Kamus Bahasa Indonesia-Turkey',
-        //            'author' => 'lolo',
-        //            'year'=> '2022',
-        //            'publisher' => 'gramedia',
-        //            'city' => 'cianjur',
-        //            'cover' => 'shshsh',
-        //            'quantity' => '5',
-        //            'bookshelf_id' => '2',
-        //            'category_id' => '2'
-        //         ]
-        //     ]
-        // );
+        DB::table('books')->insert(
+            [
+                // [
+                //    'title' => 'Geografi',
+                //    'author' => 'Lian',
+                //    'year'=> '2013',
+                //    'publisher' => 'Gramedia',
+                //    'city' => 'Cianjur',
+                //    'cover' => 'geografi.jpg',
+                //    'quantity' => '200',
+                //    'bookshelf_id' => '3',
+                // ],
+            ]
+        );
     }
 }
