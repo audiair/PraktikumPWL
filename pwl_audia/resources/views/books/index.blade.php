@@ -16,6 +16,14 @@
                    <x-primary-button tag="a" href="{{route('book.print')}}">
                         Cetak PDF
                    </x-primary-button>
+                   <x-primary-button tag="a" href="{{route('book.export')}}" target="_blank">
+                        Export Excel
+                   </x-primary-button>
+                   <x-primary-button
+                        x-data=""
+                        x-on:click.prevent="$dispatch('open-modal', 'import-book')"> 
+                        {{ __('import Excel')}}
+                   </x-primary-button>
                    <br/><br/>
                    <x-table>
                         <x-slot name="header">

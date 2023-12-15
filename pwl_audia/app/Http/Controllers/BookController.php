@@ -7,6 +7,8 @@ use Illuminate\Support\Facades\Storage;
 use App\Models\Book;
 use App\Models\Bookshelf;
 use PDF;
+use Maatwebsite\Excel\Facades\Excel;
+use App\Exports\BooksExport;
 
 
 class BookController extends Controller
@@ -120,5 +122,9 @@ class BookController extends Controller
 
         $pdf = PDF::loadview('books.print', ['books' => $book]);
         return $pdf->download('data_buku.pdf');
+    }
+
+    public function export(){
+        return Excel::download(new BooksExport, 'book.xlsx');
     }
 }
