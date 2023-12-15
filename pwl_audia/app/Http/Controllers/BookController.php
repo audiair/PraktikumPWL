@@ -9,6 +9,7 @@ use App\Models\Bookshelf;
 use PDF;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Exports\BooksExport;
+use App\imports\BooksImport;
 
 
 class BookController extends Controller
@@ -126,6 +127,20 @@ class BookController extends Controller
 
     public function export(){
         return Excel::download(new BooksExport, 'book.xlsx');
+    }
+
+    public function import(Request $req){
+        $req->validate([
+            'file' => 'required|max:10000|mimes:xlsx,xls',
+        ]);
+
+        Excel::import(new BooksImport, $req->file('file'));
+
+        $notification = array(
+            'message' => 'Import data berhasil dilakukan',
+            'alert-type' => 'Success',
+        );
+        return redirect()->route('books')->with($notification);
     }
 
 }
