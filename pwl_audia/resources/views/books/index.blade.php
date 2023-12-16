@@ -13,7 +13,7 @@
                    <x-primary-button tag="a" href="{{route('book.create')}}">
                         Tambah Data Buku
                    </x-primary-button>
-                   <x-primary-button tag="a" href="{{route('book.print')}}">
+                   <x-primary-button tag="a" href="{{route('book.print')}}" target='blank'>
                         Cetak PDF
                    </x-primary-button>
                    <x-primary-button tag="a" href="{{route('book.export')}}" target="_blank">
